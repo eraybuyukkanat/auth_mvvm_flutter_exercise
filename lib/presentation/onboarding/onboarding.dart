@@ -1,9 +1,12 @@
 import 'package:first_application/app/app_prefs.dart';
 import 'package:first_application/app/di.dart';
+import 'package:first_application/presentation/login/login_screen.dart';
 import 'package:first_application/presentation/onboarding/onboarding_viewmodel.dart';
 import 'package:first_application/presentation/resources/color_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../login/old_screens/login_view.dart';
 
 class OnBoardingView extends StatefulWidget {
   const OnBoardingView({super.key});
@@ -77,7 +80,9 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                       image: AssetImage(onboardingObject.sliderObject.imageUrl),
                     ),
                   ),
-                  Expanded(child: Text(onboardingObject.sliderObject.subtitle))
+                  Expanded(child: Text(onboardingObject.sliderObject.subtitle)),
+                  ElevatedButton(onPressed: (){Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => LoginScreen()));}, child: Text("Giriş Yap!"))
                 ],
               );
             },

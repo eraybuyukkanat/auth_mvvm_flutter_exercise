@@ -1,6 +1,6 @@
 import 'package:first_application/app/app_prefs.dart';
 import 'package:first_application/app/di.dart';
-import 'package:first_application/presentation/login/login_view.dart';
+import 'package:first_application/presentation/login/old_screens/login_view.dart';
 import 'package:first_application/presentation/onboarding/onboarding.dart';
 
 import 'package:first_application/presentation/resources/color_manager.dart';
@@ -28,10 +28,10 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
+        title: 'My App',
         theme: ThemeData(
           appBarTheme: AppBarTheme(backgroundColor: ColorManager.primary),
-          primarySwatch: Colors.blue,
+          primaryColor: ColorManager.primary,
         ),
         home: Scaffold(body: const SplashView()));
   }

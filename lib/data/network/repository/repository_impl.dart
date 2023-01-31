@@ -1,3 +1,4 @@
+import 'package:first_application/app/app_prefs.dart';
 import 'package:first_application/data/data_source/remote_data_source.dart';
 import 'package:first_application/data/mapper/mapper.dart';
 import 'package:first_application/data/network/app_api.dart';
@@ -18,8 +19,12 @@ class RepositoryImpl extends Repository {
       LoginRequest loginRequest) async {
     try {
       final response = await _remoteDataSource.login(loginRequest);
+
       if (response.success == true) {
         //eğer api bize başarı dönüyorsa rightin içine bilgileri atıyoruz
+
+
+        //AppPreferences.isAlreadyHaveToken = response.data?.token;
         return Right(response.toDomain());
       } else {
         return Left(Failure(409, response.exceptions?[0] ?? "Hata Oluştu"));

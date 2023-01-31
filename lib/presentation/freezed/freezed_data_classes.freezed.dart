@@ -186,10 +186,12 @@ abstract class _LoginObject implements LoginObject {
 class _$RegisterObjectTearOff {
   const _$RegisterObjectTearOff();
 
-  _RegisterObject call(String username, String password, int languageId) {
+  _RegisterObject call(
+      String username, String password, String password2, int languageId) {
     return _RegisterObject(
       username,
       password,
+      password2,
       languageId,
     );
   }
@@ -202,6 +204,7 @@ const $RegisterObject = _$RegisterObjectTearOff();
 mixin _$RegisterObject {
   String get username => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
+  String get password2 => throw _privateConstructorUsedError;
   int get languageId => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -214,7 +217,8 @@ abstract class $RegisterObjectCopyWith<$Res> {
   factory $RegisterObjectCopyWith(
           RegisterObject value, $Res Function(RegisterObject) then) =
       _$RegisterObjectCopyWithImpl<$Res>;
-  $Res call({String username, String password, int languageId});
+  $Res call(
+      {String username, String password, String password2, int languageId});
 }
 
 /// @nodoc
@@ -230,6 +234,7 @@ class _$RegisterObjectCopyWithImpl<$Res>
   $Res call({
     Object? username = freezed,
     Object? password = freezed,
+    Object? password2 = freezed,
     Object? languageId = freezed,
   }) {
     return _then(_value.copyWith(
@@ -240,6 +245,10 @@ class _$RegisterObjectCopyWithImpl<$Res>
       password: password == freezed
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
+              as String,
+      password2: password2 == freezed
+          ? _value.password2
+          : password2 // ignore: cast_nullable_to_non_nullable
               as String,
       languageId: languageId == freezed
           ? _value.languageId
@@ -256,7 +265,8 @@ abstract class _$RegisterObjectCopyWith<$Res>
           _RegisterObject value, $Res Function(_RegisterObject) then) =
       __$RegisterObjectCopyWithImpl<$Res>;
   @override
-  $Res call({String username, String password, int languageId});
+  $Res call(
+      {String username, String password, String password2, int languageId});
 }
 
 /// @nodoc
@@ -274,6 +284,7 @@ class __$RegisterObjectCopyWithImpl<$Res>
   $Res call({
     Object? username = freezed,
     Object? password = freezed,
+    Object? password2 = freezed,
     Object? languageId = freezed,
   }) {
     return _then(_RegisterObject(
@@ -284,6 +295,10 @@ class __$RegisterObjectCopyWithImpl<$Res>
       password == freezed
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
+              as String,
+      password2 == freezed
+          ? _value.password2
+          : password2 // ignore: cast_nullable_to_non_nullable
               as String,
       languageId == freezed
           ? _value.languageId
@@ -296,18 +311,21 @@ class __$RegisterObjectCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_RegisterObject implements _RegisterObject {
-  _$_RegisterObject(this.username, this.password, this.languageId);
+  _$_RegisterObject(
+      this.username, this.password, this.password2, this.languageId);
 
   @override
   final String username;
   @override
   final String password;
   @override
+  final String password2;
+  @override
   final int languageId;
 
   @override
   String toString() {
-    return 'RegisterObject(username: $username, password: $password, languageId: $languageId)';
+    return 'RegisterObject(username: $username, password: $password, password2: $password2, languageId: $languageId)';
   }
 
   @override
@@ -320,6 +338,9 @@ class _$_RegisterObject implements _RegisterObject {
             (identical(other.password, password) ||
                 const DeepCollectionEquality()
                     .equals(other.password, password)) &&
+            (identical(other.password2, password2) ||
+                const DeepCollectionEquality()
+                    .equals(other.password2, password2)) &&
             (identical(other.languageId, languageId) ||
                 const DeepCollectionEquality()
                     .equals(other.languageId, languageId)));
@@ -330,6 +351,7 @@ class _$_RegisterObject implements _RegisterObject {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(username) ^
       const DeepCollectionEquality().hash(password) ^
+      const DeepCollectionEquality().hash(password2) ^
       const DeepCollectionEquality().hash(languageId);
 
   @JsonKey(ignore: true)
@@ -339,13 +361,16 @@ class _$_RegisterObject implements _RegisterObject {
 }
 
 abstract class _RegisterObject implements RegisterObject {
-  factory _RegisterObject(String username, String password, int languageId) =
+  factory _RegisterObject(
+          String username, String password, String password2, int languageId) =
       _$_RegisterObject;
 
   @override
   String get username => throw _privateConstructorUsedError;
   @override
   String get password => throw _privateConstructorUsedError;
+  @override
+  String get password2 => throw _privateConstructorUsedError;
   @override
   int get languageId => throw _privateConstructorUsedError;
   @override

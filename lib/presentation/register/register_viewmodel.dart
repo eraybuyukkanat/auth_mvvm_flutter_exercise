@@ -17,19 +17,27 @@ class RegisterViewModel extends BaseViewModel {
       String>.broadcast();
   StreamController _passwordStreamController = StreamController<
       String>.broadcast();
+  StreamController _passwordStreamController2 = StreamController<
+      String>.broadcast();
   StreamController _isAllInputsValidStreamController = StreamController<
       void>.broadcast();
   StreamController isUserRegisterInSuccessfullyStreamController = StreamController<
       bool>.broadcast();
-  var registerViewObject = RegisterObject("", "", 1);
-  RegisterUseCase _registerUseCase;
 
+
+
+  var registerViewObject = RegisterObject("", "","", 1);
+
+  RegisterUseCase _registerUseCase;
   RegisterViewModel(this._registerUseCase);
+
+
 
   @override
   void dispose() {
     _usernameStreamController.close();
     _passwordStreamController.close();
+    _passwordStreamController2.close();
     _isAllInputsValidStreamController.close();
     isUserRegisterInSuccessfullyStreamController.close();
   }
@@ -41,8 +49,13 @@ class RegisterViewModel extends BaseViewModel {
   }
 
   bool _validateAllInputs() {
-    return registerViewObject.username.isNotEmpty &&
-        registerViewObject.password.isNotEmpty;
+    if(registerViewObject.password == registerViewObject.password2 && registerViewObject.username.isNotEmpty &&
+        registerViewObject.password.isNotEmpty){
+      return true;
+    }else{
+      return false;
+    }
+
   }
 
   _isPasswordValid(String password) {
@@ -80,6 +93,17 @@ class RegisterViewModel extends BaseViewModel {
       registerViewObject = registerViewObject.copyWith(password: password);
     } else {
       registerViewObject = registerViewObject.copyWith(password: "");
+    }
+    _validate();
+  }
+
+  @override
+  setPassword2(String password2) {
+    inputPassword.add(password2);
+    if (_isPasswordValid(password2)) {
+      registerViewObject = registerViewObject.copyWith(password2: password2);
+    } else {
+      registerViewObject = registerViewObject.copyWith(password2: "");
     }
     _validate();
   }

@@ -1,6 +1,6 @@
 import 'package:first_application/app/di.dart';
 import 'package:first_application/domain/model/home/main_page.dart';
-import 'package:first_application/presentation/login/login_view.dart';
+import 'package:first_application/presentation/login/old_screens/login_view.dart';
 import 'package:first_application/presentation/login/login_viewmodel.dart';
 import 'package:first_application/presentation/register/register_viewmodel.dart';
 import 'package:first_application/presentation/state_renderer/state_renderer_impl.dart';
@@ -21,7 +21,7 @@ class _RegisterViewState extends State<RegisterView> {
     RegisterViewModel _viewModel = instance<RegisterViewModel>();
     TextEditingController _usernameTextEditingController=TextEditingController();
     TextEditingController _passwordTextEditingController=TextEditingController();
-
+    TextEditingController _phoneTextEditingController=TextEditingController();
 
     _bind(){
       _usernameTextEditingController.addListener(() {
@@ -50,6 +50,7 @@ class _RegisterViewState extends State<RegisterView> {
   void dispose() {
     _passwordTextEditingController.dispose();
     _usernameTextEditingController.dispose();
+    _phoneTextEditingController.dispose();
     super.dispose();
 
   }
@@ -124,12 +125,15 @@ class _RegisterViewState extends State<RegisterView> {
                           );
                         }),
                       )),
+                  SizedBox(height: 10,),
+
                 Expanded(
                     flex: 2,
                     child: ElevatedButton(
                         onPressed: () {
                           _viewModel.register();
                         },
+
                         child: Text("Kayıt Ol"))),
                 Expanded(
                   flex: 2,

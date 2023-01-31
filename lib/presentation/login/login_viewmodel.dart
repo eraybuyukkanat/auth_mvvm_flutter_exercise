@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 import 'dart:ffi';
 
+import 'package:first_application/app/app_prefs.dart';
 import 'package:first_application/data/responses/responses.dart';
 import 'package:first_application/domain/usecases/login_usecase.dart';
 import 'package:first_application/presentation/base/base_viewmodel.dart';
@@ -9,6 +10,8 @@ import 'package:first_application/presentation/freezed/freezed_data_classes.dart
 import 'package:first_application/presentation/state_renderer/state_renderer.dart';
 import 'package:first_application/presentation/state_renderer/state_renderer_impl.dart';
 import 'package:first_application/data/responses/responses.dart';
+
+import '../../app/di.dart';
 
 class LoginViewModel extends BaseViewModel
     with LoginViewModelInput, LoginViewModelOutput {
@@ -20,12 +23,17 @@ class LoginViewModel extends BaseViewModel
       StreamController<void>.broadcast();
   StreamController isUserLoginInSuccessfullyStreamController =
       StreamController<bool>();
-  StreamController _isTokenAlreadyUsed = StreamController<String>.broadcast();
+
 
 
   var loginViewObject = LoginObject("", "","blabla");
+
   LoginUseCase _loginUseCase;
+
+  AppPreferences _appPreferences = instance<AppPreferences>();
+
   LoginViewModel(this._loginUseCase);
+
 ////////////////////////////////////////////////////////////////////
   @override
   void dispose() {
@@ -33,7 +41,7 @@ class LoginViewModel extends BaseViewModel
     _passwordStreamController.close();
     _isAllInputsValidStreamController.close();
     isUserLoginInSuccessfullyStreamController.close();
-    _isTokenAlreadyUsed.close();
+
   }
 
   @override
@@ -71,9 +79,16 @@ class LoginViewModel extends BaseViewModel
                   inputState.add(ErrorState(StateRendererType.POPUP_ERROR_STATE,
                       "Giriş Yaparken Hata Oluştu"))
                 }, (data) {
+
       inputState.add(ContentState());
       isUserLoginInSuccessfullyStreamController.add(true);
-      _isTokenAlreadyUsed.add(true);
+      _appPreferences.setToken(data.userData!.token);
+      print(data.userData?.id);
+      print(data.userData?.sign);
+      print(data.userData!.token);
+      _appPreferences.KullaniciGirisiniYapti();
+
+      //print(_appPreferences.getToken());
 
       //bir tane streamcontroller atcaz içine string olcak çünkü içine token saklayacak diğerleri gibi input outputu olcak
       //add diyip tokenı içine vercez
@@ -81,10 +96,9 @@ class LoginViewModel extends BaseViewModel
     });
   }
 
-getToken(String token){
 
-}
-
+//YAPILACAKLAR
+  //
 
 
   @override
@@ -163,6 +177,8 @@ abstract class LoginViewModelInput {
   Sink get inputPassword;
   Sink get inputAllInputsValid;
 }
+
+
 
 abstract class LoginViewModelOutput {
   Stream<bool> get outputIsUsernameValid;
