@@ -1,3 +1,3 @@
 class Constant {
-  static const String baseUrl = "https://notsosecret.snowsparrow.com/";
+  static const String baseUrl = "";
 }

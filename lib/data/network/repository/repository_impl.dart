@@ -21,7 +21,7 @@ class RepositoryImpl extends Repository {
       final response = await _remoteDataSource.login(loginRequest);
 
       if (response.success == true) {
-        //eğer api bize başarı dönüyorsa rightin içine bilgileri atıyoruz
+
 
 
         //AppPreferences.isAlreadyHaveToken = response.data?.token;

@@ -11,7 +11,7 @@ class _AppServiceClient implements AppServiceClient {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'https://notsosecret.snowsparrow.com/';
+    baseUrl ??= '';
   }
 
   final Dio _dio;
