@@ -1,5 +1,5 @@
 
-I developed a login/register app working with RestAPI. I used MVVM, StreamBuilder, Dio, Shared Preference, State Renderer, Retrofit, Dependecy Injection, Responsive Design, Packages etc.
+I developed a login/register app working with RestAPI. I used MVVM, StreamBuilder, Dio, Shared Preference, State Renderer, Retrofit, Dependecy Injection, Responsive Design, Packages
 
 ![image](https://user-images.githubusercontent.com/89808574/216139771-ab2ee89d-79df-41e3-b109-b0199d9f8834.png)
 
